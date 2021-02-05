@@ -20,6 +20,7 @@ if __name__ == "__main__":
     traj8 = uav_trajectory.Trajectory()
     traj9 = uav_trajectory.Trajectory()
     
+    # upload csv
     traj1.loadcsv(".csv")
     traj2.loadcsv(".csv")
     traj3.loadcsv(".csv")
@@ -43,17 +44,31 @@ if __name__ == "__main__":
             cf.uploadTrajectory(7, 0, traj7)
             cf.uploadTrajectory(8, 0, traj8)
             cf.uploadTrajectory(9, 0, traj9)
-        allcfs.takeoff(targetHeight=1.0, duration=2.0)
-        timeHelper.sleep(2.5)
+        
+        # take off
+        allcfs.takeoff(targetHeight=1.0, duration=1.0)
+        timeHelper.sleep(2.0)
+        
+        # cfs in a row
         for cf in allcfs.crazyflies:
             pos = np.array(cf.initialPosition) + np.array([0, 0, 1.0])
-            cf.goTo(pos, 0, 2.0)
+            cf2.goTo(pos - 0.5, pos, 1.0)
+            cf8.goTo(pos + 0.5, pos, 1.0)
+            timeHelper.sleep(1.5)
+            cf1.goTo(pos - 1.0, pos - 1.0, 1.0)
+            cf3.goTo(pos, pos + 1.0, 1.0)
+            cf4.goTo(pos - 0.5, pos - 1.0, 1.0)
+            cf6.goTo(pos + 0.5, pos + 1.0, 1.0)
+            cf7.goTo(pos, pos - 1.0, 1.0)
+            cf9.goTo(pos + 1.0, pos + 1.0, 1.0)
+            
         timeHelper.sleep(2.5)
-
-        allcfs.startTrajectory(0, timescale=TIMESCALE)
+        
+        # excute traj
+        for cf in allcfs.crazyflies:
+            cf.startTrajectory(cf.id-1)
         timeHelper.sleep(traj1.duration * TIMESCALE + 2.0)
-        allcfs.startTrajectory(0, timescale=TIMESCALE, reverse=True)
-        timeHelper.sleep(traj1.duration * TIMESCALE + 2.0)
 
+        # land
         allcfs.land(targetHeight=0.06, duration=2.0)
         timeHelper.sleep(3.0)
