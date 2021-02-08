@@ -29,6 +29,16 @@ if __name__ == "__main__":
     traj7.loadcsv(".csv")
     traj8.loadcsv(".csv")
     traj9.loadcsv(".csv")
+    
+    move1.loadcsv(".csv")
+    move2.loadcsv(".csv")
+    move3.loadcsv(".csv")
+    move4.loadcsv(".csv")
+    move6.loadcsv(".csv")
+    move7.loadcsv(".csv")
+    move8.loadcsv(".csv")
+    move9.loadcsv(".csv")
+    
     ids=[1,2,3,4,6,7,8,9]
 
     TRIALS = 1
@@ -58,33 +68,29 @@ if __name__ == "__main__":
             cf.startTrajectory(cf.id-1)
         timeHelper.sleep(traj1.duration * TIMESCALE + 2.0)
         
+        allcfs.startTrajectory(0, timescale=TIMESCALE)
+        timeHelper.sleep(traj1.duration * TIMESCALE + 2.0)
+        
     # upload second csv--------------------------------------------------------------------
-    traj1.loadcsv(".csv")
-    traj2.loadcsv(".csv")
-    traj3.loadcsv(".csv")
-    traj4.loadcsv(".csv")
-    traj6.loadcsv(".csv")
-    traj7.loadcsv(".csv")
-    traj8.loadcsv(".csv")
-    traj9.loadcsv(".csv")
-    ids=[1,2,3,4,6,7,8,9]
-    
     for i in range(TRIALS):
         for cf in allcfs.crazyflies:
-            cf.uploadTrajectory(1, 0, traj1)
-            cf.uploadTrajectory(2, 0, traj2)
-            cf.uploadTrajectory(3, 0, traj3)
-            cf.uploadTrajectory(4, 0, traj4)
-            cf.uploadTrajectory(5, 0, traj5)
-            cf.uploadTrajectory(6, 0, traj6)
-            cf.uploadTrajectory(7, 0, traj7)
-            cf.uploadTrajectory(8, 0, traj8)
-            cf.uploadTrajectory(9, 0, traj9)
+            cf.uploadTrajectory(1, 0, move1)
+            cf.uploadTrajectory(2, 0, move2)
+            cf.uploadTrajectory(3, 0, move3)
+            cf.uploadTrajectory(4, 0, move4)
+            cf.uploadTrajectory(5, 0, move5)
+            cf.uploadTrajectory(6, 0, move6)
+            cf.uploadTrajectory(7, 0, move7)
+            cf.uploadTrajectory(8, 0, move8)
+            cf.uploadTrajectory(9, 0, move9)
             
         # excute second traj
         for cf in allcfs.crazyflies:
             cf.startTrajectory(cf.id-1)
-        timeHelper.sleep(traj1.duration * TIMESCALE + 2.0)
+        timeHelper.sleep(move1.duration * TIMESCALE + 2.0)
+        
+        allcfs.startTrajectory(0, timescale=TIMESCALE)
+        timeHelper.sleep(move1.duration * TIMESCALE + 2.0)
         
         
         # land--------------------------------------------------------------------------------------
