@@ -60,7 +60,7 @@ if __name__ == "__main__":
         timeHelper.sleep(1.5)
         for cf in allcfs.crazyflies:
             pos = np.array(cf.initialPosition) + np.array([0, 0, 1.0])
-            cf.goTo(pos, 0, 2.0)
+            cf.goTo(pos, 0, 1.0)
         timeHelper.sleep(1.5)
         
         # excute first traj
