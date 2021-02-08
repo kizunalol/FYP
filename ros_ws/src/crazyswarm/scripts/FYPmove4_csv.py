@@ -20,7 +20,7 @@ if __name__ == "__main__":
     traj8 = uav_trajectory.Trajectory()
     traj9 = uav_trajectory.Trajectory()
     
-    # upload csv
+    # upload first csv-----------------------------------------------------------------------
     traj1.loadcsv(".csv")
     traj2.loadcsv(".csv")
     traj3.loadcsv(".csv")
@@ -47,27 +47,46 @@ if __name__ == "__main__":
         
         # take off
         allcfs.takeoff(targetHeight=1.0, duration=1.0)
-        timeHelper.sleep(2.0)
-        
-        # cfs in a row
+        timeHelper.sleep(1.5)
         for cf in allcfs.crazyflies:
             pos = np.array(cf.initialPosition) + np.array([0, 0, 1.0])
-            cf2.goTo(pos - 0.5, pos, 1.0)
-            cf8.goTo(pos + 0.5, pos, 1.0)
-            timeHelper.sleep(1.5)
-            cf1.goTo(pos - 1.0, pos - 1.0, 1.0)
-            cf3.goTo(pos, pos + 1.0, 1.0)
-            cf4.goTo(pos - 0.5, pos - 1.0, 1.0)
-            cf6.goTo(pos + 0.5, pos + 1.0, 1.0)
-            cf7.goTo(pos, pos - 1.0, 1.0)
-            cf9.goTo(pos + 1.0, pos + 1.0, 1.0)
-        timeHelper.sleep(2.5)
+            cf.goTo(pos, 0, 2.0)
+        timeHelper.sleep(1.5)
         
-        # excute traj
+        # excute first traj
         for cf in allcfs.crazyflies:
             cf.startTrajectory(cf.id-1)
         timeHelper.sleep(traj1.duration * TIMESCALE + 2.0)
-
-        # land
+        
+    # upload second csv--------------------------------------------------------------------
+    traj1.loadcsv(".csv")
+    traj2.loadcsv(".csv")
+    traj3.loadcsv(".csv")
+    traj4.loadcsv(".csv")
+    traj6.loadcsv(".csv")
+    traj7.loadcsv(".csv")
+    traj8.loadcsv(".csv")
+    traj9.loadcsv(".csv")
+    ids=[1,2,3,4,6,7,8,9]
+    
+    for i in range(TRIALS):
+        for cf in allcfs.crazyflies:
+            cf.uploadTrajectory(1, 0, traj1)
+            cf.uploadTrajectory(2, 0, traj2)
+            cf.uploadTrajectory(3, 0, traj3)
+            cf.uploadTrajectory(4, 0, traj4)
+            cf.uploadTrajectory(5, 0, traj5)
+            cf.uploadTrajectory(6, 0, traj6)
+            cf.uploadTrajectory(7, 0, traj7)
+            cf.uploadTrajectory(8, 0, traj8)
+            cf.uploadTrajectory(9, 0, traj9)
+            
+        # excute second traj
+        for cf in allcfs.crazyflies:
+            cf.startTrajectory(cf.id-1)
+        timeHelper.sleep(traj1.duration * TIMESCALE + 2.0)
+        
+        
+        # land--------------------------------------------------------------------------------------
         allcfs.land(targetHeight=0.06, duration=2.0)
         timeHelper.sleep(3.0)
