@@ -30,6 +30,16 @@ if __name__ == "__main__":
     traj8.loadcsv(".csv")
     traj9.loadcsv(".csv")
     
+    move1 = uav_trajectory.Trajectory()
+    move2 = uav_trajectory.Trajectory()
+    move3 = uav_trajectory.Trajectory()
+    move4 = uav_trajectory.Trajectory()
+    move5 = uav_trajectory.Trajectory()
+    move6 = uav_trajectory.Trajectory()
+    move7 = uav_trajectory.Trajectory()
+    move8 = uav_trajectory.Trajectory()
+    move9 = uav_trajectory.Trajectory()  
+    
     move1.loadcsv(".csv")
     move2.loadcsv(".csv")
     move3.loadcsv(".csv")
@@ -40,20 +50,21 @@ if __name__ == "__main__":
     move9.loadcsv(".csv")
     
     ids=[1,2,3,4,6,7,8,9]
-
+    
+    T=1
     TRIALS = 1
     TIMESCALE = 1.0
     for i in range(TRIALS):
         for cf in allcfs.crazyflies:
-            cf.uploadTrajectory(1, 0, traj1)
-            cf.uploadTrajectory(2, 0, traj2)
-            cf.uploadTrajectory(3, 0, traj3)
-            cf.uploadTrajectory(4, 0, traj4)
-            cf.uploadTrajectory(5, 0, traj5)
-            cf.uploadTrajectory(6, 0, traj6)
-            cf.uploadTrajectory(7, 0, traj7)
-            cf.uploadTrajectory(8, 0, traj8)
-            cf.uploadTrajectory(9, 0, traj9)
+            cf.uploadTrajectory(T*1, 0, traj1)
+            cf.uploadTrajectory(T*2, 0, traj2)
+            cf.uploadTrajectory(T*3, 0, traj3)
+            cf.uploadTrajectory(T*4, 0, traj4)
+            cf.uploadTrajectory(T*5, 0, traj5)
+            cf.uploadTrajectory(T*6, 0, traj6)
+            cf.uploadTrajectory(T*7, 0, traj7)
+            cf.uploadTrajectory(T*8, 0, traj8)
+            cf.uploadTrajectory(T*9, 0, traj9)
         
         # take off
         allcfs.takeoff(targetHeight=1.0, duration=1.0)
@@ -68,29 +79,30 @@ if __name__ == "__main__":
             cf.startTrajectory(cf.id-1)
         timeHelper.sleep(traj1.duration * TIMESCALE + 2.0)
         
-        allcfs.startTrajectory(0, timescale=TIMESCALE)
-        timeHelper.sleep(traj1.duration * TIMESCALE + 2.0)
+        #allcfs.startTrajectory(0, timescale=TIMESCALE)
+        #timeHelper.sleep(traj1.duration * TIMESCALE + 2.0)
         
     # upload second csv--------------------------------------------------------------------
+    T=2
     for i in range(TRIALS):
         for cf in allcfs.crazyflies:
-            cf.uploadTrajectory(1, 0, move1)
-            cf.uploadTrajectory(2, 0, move2)
-            cf.uploadTrajectory(3, 0, move3)
-            cf.uploadTrajectory(4, 0, move4)
-            cf.uploadTrajectory(5, 0, move5)
-            cf.uploadTrajectory(6, 0, move6)
-            cf.uploadTrajectory(7, 0, move7)
-            cf.uploadTrajectory(8, 0, move8)
-            cf.uploadTrajectory(9, 0, move9)
+            cf.uploadTrajectory(T*1, 0, move1)
+            cf.uploadTrajectory(T*2, 0, move2)
+            cf.uploadTrajectory(T*3, 0, move3)
+            cf.uploadTrajectory(T*4, 0, move4)
+            cf.uploadTrajectory(T*5, 0, move5)
+            cf.uploadTrajectory(T*6, 0, move6)
+            cf.uploadTrajectory(T*7, 0, move7)
+            cf.uploadTrajectory(T*8, 0, move8)
+            cf.uploadTrajectory(T*9, 0, move9)
             
         # excute second traj
         for cf in allcfs.crazyflies:
-            cf.startTrajectory(cf.id-1)
+            cf.startTrajectory(cf.id-11)
         timeHelper.sleep(move1.duration * TIMESCALE + 2.0)
         
-        allcfs.startTrajectory(0, timescale=TIMESCALE)
-        timeHelper.sleep(move1.duration * TIMESCALE + 2.0)
+        #allcfs.startTrajectory(0, timescale=TIMESCALE)
+        #timeHelper.sleep(move1.duration * TIMESCALE + 2.0)
         
         
         # land--------------------------------------------------------------------------------------
