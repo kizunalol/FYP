@@ -51,7 +51,7 @@ if __name__ == "__main__":
     
     ids=[1,2,3,4,6,7,8,9]
     
-    T=1
+    T = 1
     TRIALS = 1
     TIMESCALE = 1.0
     for i in range(TRIALS):
@@ -83,7 +83,7 @@ if __name__ == "__main__":
         #timeHelper.sleep(traj1.duration * TIMESCALE + 2.0)
         
     # upload second csv--------------------------------------------------------------------
-    T=2
+    T = 2
     for i in range(TRIALS):
         for cf in allcfs.crazyflies:
             cf.uploadTrajectory(T*1, 0, move1)
