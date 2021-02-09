@@ -20,7 +20,6 @@ if __name__ == "__main__":
     traj8 = uav_trajectory.Trajectory()
     traj9 = uav_trajectory.Trajectory()
     
-    # upload first csv-----------------------------------------------------------------------
     traj1.loadcsv(".csv")
     traj2.loadcsv(".csv")
     traj3.loadcsv(".csv")
@@ -53,6 +52,7 @@ if __name__ == "__main__":
     
     ids=[1,2,3,4,5,6,7,8,9]
     
+    # upload first csv-----------------------------------------------------------------------
     T = 1
     TRIALS = 1
     TIMESCALE = 1.0
