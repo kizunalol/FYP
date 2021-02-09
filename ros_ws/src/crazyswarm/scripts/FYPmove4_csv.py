@@ -25,6 +25,7 @@ if __name__ == "__main__":
     traj2.loadcsv(".csv")
     traj3.loadcsv(".csv")
     traj4.loadcsv(".csv")
+    traj5.loadcsv(".csv")
     traj6.loadcsv(".csv")
     traj7.loadcsv(".csv")
     traj8.loadcsv(".csv")
@@ -44,12 +45,13 @@ if __name__ == "__main__":
     move2.loadcsv(".csv")
     move3.loadcsv(".csv")
     move4.loadcsv(".csv")
+    move5.loadcsv(".csv")
     move6.loadcsv(".csv")
     move7.loadcsv(".csv")
     move8.loadcsv(".csv")
     move9.loadcsv(".csv")
     
-    ids=[1,2,3,4,6,7,8,9]
+    ids=[1,2,3,4,5,6,7,8,9]
     
     T = 1
     TRIALS = 1
@@ -76,7 +78,7 @@ if __name__ == "__main__":
         
         # excute first traj
         for cf in allcfs.crazyflies:
-            cf.startTrajectory(cf.id-1)
+            cf.startTrajectory(cf.id-T*1)
         timeHelper.sleep(traj1.duration * TIMESCALE + 2.0)
         
         #allcfs.startTrajectory(0, timescale=TIMESCALE)
@@ -98,7 +100,7 @@ if __name__ == "__main__":
             
         # excute second traj
         for cf in allcfs.crazyflies:
-            cf.startTrajectory(cf.id-11)
+            cf.startTrajectory(cf.id-T*1)
         timeHelper.sleep(move1.duration * TIMESCALE + 2.0)
         
         #allcfs.startTrajectory(0, timescale=TIMESCALE)
